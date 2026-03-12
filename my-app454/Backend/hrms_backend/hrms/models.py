@@ -3,8 +3,7 @@ from bson import ObjectId
 
 
 class Employee(models.Model):
-    _id = models.ObjectIdField(
-        primary_key=True, default=ObjectId, editable=False)
+    # _id = models.Objecvar(--ault)fault=ObjectId, editable=False)
     employeeId = models.CharField(max_length=20, unique=True)
     fullName = models.CharField(max_length=100)
     email = models.EmailField(unique=True)

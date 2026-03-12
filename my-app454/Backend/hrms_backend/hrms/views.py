@@ -6,6 +6,7 @@ from .models import Employee, Attendance
 from .serializers import EmployeeSerializer, AttendanceSerializer
 
 
+# Home page
 def home(request):
     return HttpResponse("Welcome to HRMS Home Page")
 

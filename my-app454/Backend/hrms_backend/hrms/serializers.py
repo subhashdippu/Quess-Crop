@@ -3,26 +3,17 @@ from .models import Employee, Attendance
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
-    id = serializers.SerializerMethodField()  # string version of ObjectId
+    id = serializers.CharField(
+        source='_id', read_only=True)  # Map ObjectId to id
 
     class Meta:
         model = Employee
         fields = ['id', 'employeeId', 'fullName', 'email', 'department']
 
-    def get_id(self, obj):
-        return str(obj._id)
-
 
 class AttendanceSerializer(serializers.ModelSerializer):
-    id = serializers.SerializerMethodField()
-    employee = serializers.SlugRelatedField(
-        queryset=Employee.objects.all(),
-        slug_field='_id'
-    )
+    id = serializers.CharField(source='_id', read_only=True)
 
     class Meta:
         model = Attendance
         fields = ['id', 'employee', 'date', 'status']
-
-    def get_id(self, obj):
-        return str(obj._id)
