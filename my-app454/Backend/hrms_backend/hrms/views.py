@@ -11,10 +11,11 @@ def home(request):
     return HttpResponse("Welcome to HRMS Home Page")
 
 
+# Employee CRUD
 class EmployeeViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
-    lookup_field = 'employeeId'
+    lookup_field = 'employeeId'  # Use employeeId instead of ObjectId
 
     def get_object(self):
         emp_id = self.kwargs.get('employeeId')
@@ -26,10 +27,11 @@ class EmployeeViewSet(viewsets.ModelViewSet):
         return super().create(request, *args, **kwargs)
 
 
+# Attendance CRUD
 class AttendanceViewSet(viewsets.ModelViewSet):
     queryset = Attendance.objects.all()
     serializer_class = AttendanceSerializer
-    lookup_field = 'employeeId'
+    lookup_field = 'employeeId'  # Look up by EmployeeId
 
     def destroy(self, request, *args, **kwargs):
         emp_id = self.kwargs.get('employeeId')
